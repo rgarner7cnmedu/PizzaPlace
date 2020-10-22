@@ -2,6 +2,7 @@
 <EditForm OnValidSubmit="@Submit"
           Model="@Customer">
     <DataAnnotationsValidator />
+    <InputWatcher @ref="inputWatcher" FieldChanged="@FieldChanged"/>
     <div class="form-group row mb-1">
         <label class="col-sm-3 col-form-label"
                for="FirstName">Name:</label>
@@ -37,6 +38,9 @@
     </div>
 </EditForm>
 @code {
+    private InputWatcher inputWatcher;
+    private bool isInvalid = true;
+
     [Parameter]
     public string Title { get; set; }
     [Parameter]
@@ -47,4 +51,12 @@
     public Customer Customer { get; set; }
     [Parameter]
     public EventCallback Submit { get; set; }
+    [Parameter]
+    public EventCallback<Customer> CustomerChanged { get; set; }
+
+    private void FieldChanged(string fieldName)
+    {
+        CustomerChanged.InvokeAsync(Customer);
+        isInvalid = !inputWatcher.Validate();
+    }
 }
