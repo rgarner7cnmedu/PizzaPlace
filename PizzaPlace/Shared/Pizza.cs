@@ -12,6 +12,10 @@ namespace PizzaPlace.Shared
     }
     public class Pizza
     {
+        public Pizza()
+        {
+
+        }
         public Pizza(int id, string name, decimal price, Spiciness spiciness)
         {
             this.Id = id;

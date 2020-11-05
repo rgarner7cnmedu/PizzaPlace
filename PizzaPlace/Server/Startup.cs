@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using PizzaPlace.Server.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace PizzaPlace.Server
 {
@@ -25,6 +28,8 @@ namespace PizzaPlace.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDbContext<PizzaPlaceDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("PizzaDb")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
