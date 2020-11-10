@@ -15,7 +15,7 @@ namespace PizzaPlace.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
             builder.Services.AddTransient<IMenuService, MenuService>();
-            builder.Services.AddTransient<IOrderService, ConsoleOrderService>();
+            builder.Services.AddTransient<IOrderService, OrderService>();
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });            
             builder.Services.AddSingleton<State>();
             await builder.Build().RunAsync();
