@@ -14,7 +14,7 @@ namespace PizzaPlace.Server.Data
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-
+        public DbSet<BlogEntry> BlogEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
