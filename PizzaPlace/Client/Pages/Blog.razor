@@ -1,0 +1,28 @@
+﻿@page "/blog"
+@inject IBlogService _blogService
+
+<h3>Blog</h3>
+
+@if (entries == null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    @foreach (var entry in entries)
+    {
+        <h4>@entry.Title</h4>
+        <p>@entry.Text</p>       
+    }
+}
+
+@code {
+    List<BlogEntry> entries;
+
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        entries = await _blogService.GetBlogEntries();
+    }
+}
