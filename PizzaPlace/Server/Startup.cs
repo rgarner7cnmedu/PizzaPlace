@@ -9,6 +9,9 @@ using System.Linq;
 using PizzaPlace.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace PizzaPlace.Server
 {
@@ -50,8 +53,13 @@ namespace PizzaPlace.Server
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
-
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"StaticFiles")),
+                RequestPath = new PathString("/StaticFiles")
+            }) ;
             app.UseRouting();
+
 
             app.UseEndpoints(endpoints =>
             {

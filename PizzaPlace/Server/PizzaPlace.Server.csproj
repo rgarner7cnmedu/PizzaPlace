@@ -25,5 +25,9 @@
     <ProjectReference Include="..\Shared\PizzaPlace.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StaticFiles\Images\" />
+  </ItemGroup>
+
 
 </Project>
